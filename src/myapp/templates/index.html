@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}myapp{% endblock %}
+
+{% block content %}
+
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+    <!-- Add your navigation links here -->
+    &emsp;<a href=" /about/ ">About</a> |
+    <a href=" /myapp/myapp ">日記情報</a> |
+    <a href=" /myapp/detail/13/ "> 詳しい情報</a> |
+    <a href=" /myapp/form/ ">コンタクト</a>  |
+    <a href=" /admin/ ">管理サイト</a>   |
+    <a href="/myapp/person_list/">人物情報</a>   |
+  </nav>
+</header>
+<div class="container">
+<h1>Home</h1>
+<main>
+    <section>
+       <h3>How to make this App for beginners .</h3> 
+       
+        <p>Let's start with Daigo application steps.</p>
+    </section>
+    
+    <p class="p1">1 &nbsp; &nbsp; &nbsp;cd /Users/naomichimasumoto/Documents/canape/src  &emsp;今回はDcuments保存</p>
+    <p class="p1">2 &nbsp; &nbsp; &nbsp;django-admin startproject (プロジェクト名)</p>
+    <p class="p1" >3&nbsp; &nbsp; &nbsp; cd src</p>
+    <p class="p1">%&nbsp; &nbsp; &nbsp;python3 manage.py runserver</p>
+    <br>
+    <p>コマンドすると基本的な、adminのウェブができました。</p>
+    <p class="p1">同じ名前の特殊なフォルダと、manage.pyファイル（管理用）が自動的に作られます。</p>
+    <p class="p1">注意すべきは同じ名前の特殊なフォルダの中に、全体を設定するsettings.py と</p>
+    <p class="p1">URLの設定ファイルurls.pyがある。まずはこの二つに作業加えるので重要です。</p>
+    <a href="https://canape2020.stars.ne.jp/python/django-src.html#12-3">プロジェクト始めよう-ここまでの詳しい説明</a>
+    <br>
+    <p class="p1">次に自分で表示するWebページを作る</p>
+    <p class="p1">このプロジェクトにmyappという名のアプリを作ります。</p>
+    <br><p class="p1">python3 manage.py <mark>startapp</mark>myapp</p><br>
+    <p class="p1">全体設定ファイルつまり main/settings.py を開いてINSTALLED_APPS に”'myapp',”をセットする<br>DEBUG = True開発中はこのままで公開する前に" False "にする。</p>
+    <p class="p1">”myapp”の中にtemplatesフォルダを新規に作りindex.htmlファイル、about.htmlファイル、base.htmlファイルを作る。</p>
+    <p class="p1">”myapp”下templatesフォルダの中myappに作り中にmyapp_list.htmlファイル他の関連htmlファイルを増やしていく。</p>
+    <p class="p1">”myapp”の中にstaticフォルダを新規に作りcssフォルダ内index.cssファイルを作る。</p>
+    <p class="p1">”プロジェクト名”の直下にstatic_localフォルダを新規に作りcssフォルダを作る中にheader.cssなどファイルを増やす。</p>
+    <p class="p1">“myapp”の中 views.py<span class="Apple-converted-space">&nbsp; </span>にhtmlを返しViewを追加する。</p>
+    <p class="p1">“myapp”の中 なければ作ったurls.py にパスなど　作ったViewとURLを結びつける。</p>
+    <p class="p1">全体設定ファイルのurls.pyにも観に行くよう(include)に書き加える。</p>
+  
+
+    <section>
+        <h2>Contact</h2>
+        <p>Contact us at contact@example.com</p>
+    </section>
+   
+</main>
+
+    
+<footer class="bg-primary">
+        <div id="footer-logo">
+          <a href="#">
+            <i class="bi bi-bootstrap-fill footer-logo" style="font-size: 3rem;"></i>
+          </a>
+        </div>
+        <div class="footer-content">
+          <div>
+            <a href="#">
+              プライバシーポリシー
+            </a>
+          </div>
+          <div>|</div>
+          <div>
+            <a href="#">
+               利用規約
+            </a>        
+          </div>
+          <div>|</div>
+          <div>
+            <small>
+            &copy; 2023 My Django App. All rights reserved.
+            </small>
+          </div>
+        </div>
+</footer>
+</div>
+
+
+{% endblock %}
+
+
+

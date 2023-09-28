@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}日記アプリ一覧{% endblock %}
+{% block content %}
+<header>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <!-- ここでのコメントアウトが正しくありません。不要な部分は削除しましょう。 -->
+      <div class="flex-grow-1" style="max-width:400px;">
+        <form class="d-flex" method="GET">
+          <input class="form-control me-2" type="search" placeholder="検索..." aria-label="Search" name="search">
+          <button class="btn btn-outline-light" type="submit">検索</button>
+        </form>
+      </div>
+      
+      <!-- ログインユーザー名を表示 -->
+      <div class="text-light nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ユーザー名
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">アカウント設定</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">ログアウト</a></li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container">
+  <h1>日記アプリ</h1>
+  <div class="mt-3 d-flex justify-content-end">
+    <a href="{% url 'myapp-list' %}" class="btn btn-outline-primary float-right">
+      <i class="bi bi-plus"></i> Home
+    </a>&emsp;
+    <a href="http://127.0.0.1:8000/myapp/detail/13/" class="btn btn-outline-primary float-right">
+      <i class="bi bi-plus"></i> 内容
+    </a>
+  </div>
+  {% for obj in object_list %}
+    <div class="card my-3">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{% url 'myapp-detail' obj.pk %}">
+            {{ obj.title }}
+          </a>
+        </h5>
+        <!-- ここでは内容 (content) の表示をコメントアウトしていますが、必要に応じてコメントを解除して表示できます。 -->
+        <!-- <p class="card-text">
+          {{ obj.content }}
+        </p> -->
+      </div>
+    </div>
+  {% empty %}
+    <p>該当するメールがありません。</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}myapp{% endblock %}
+
+{% block content %}
+
+    <p>人物リスト</p>
+    <ul>
+    {% for person in object_list %}
+        <li>
+            {{ person.name }} ({{ person.age }}才)
+            <br>Email: {{ person.email }}
+            <br>Phone: {{ person.phone }}
+            <br>Address: {{ person.address }}
+        </li>
+    {% endfor %}
+    </ul>
+
+
+    <P><a href={% url 'myapp-list' %}>Home</a></P>
+{% endblock %}
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>人物リスト</p>
+    <ul>
+    {% for item in object_list %}
+    <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+    
+</body>
+</html> -->

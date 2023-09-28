@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.title }}の詳細{% endblock %}
+{% block content %}
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+      
+      
+    <!-- Add your navigation links here -->
+    &emsp;<a href=" / ">Home</a> |
+    <a href=" /about/ ">About</a> |
+    <a href=" /myapp/myapp ">日記情報</a> |
+    <a href=" /myapp/form/ ">コンタクト</a>  |
+    <a href=" /admin/ ">管理サイト</a>   |
+    <a href="/myapp/person_list/">人物情報</a>   |
+<!-- </nav> -->
+
+    
+    
+  </nav>
+</header>
+<div class="container">
+    <h1>詳しい情報</h1>
+
+    <div class="card mx-auto my-5 w-50" style="min-width:300px;">
+        <div class="card-header">
+            {{ object.timestamp }}
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">{{ object.title }} </h3>
+            <p class="card-text">{{ object.content }}</p>
+            
+        </div>
+    </div> 
+    
+
+ <pre>解説    
+　　　    ブロックタグ用いて書いてます
+      views.py のコードの、 myappDetailView というビューを定義してる部分をみてください
+      objects.get()で、単一のデータを取り出すメソッド反映させる
+      pkでオブジェクトを表示します、　http://127.0.0.1:8000/myapp/detail/13/  の番号を変えてみましょう。
+      urls.pyに/&lt;int:pk>/を記載し反映させる
+      このテンプレート内の&#123;&#123; object　&#125;&#125;は、ビューが渡したコンテキスト内の object キーに対応する値を表示します。
+      具体的には、MyApp オブジェクトが持つ __str__() メソッドによって返される文字列表現が表示されます。
+      通常、&#123;&#123; object　&#125;&#125;はモデルオブジェクトの文字列表現で、モデルの __str__() メソッドがデフォルトで提供されている場合は、そのメソッドが呼び出されます。
+      timestamp 属性の値はオブジェクトの作成時刻や更新時刻など、日付と時刻に関連する情報を表します。
+      モデルの __str__() メソッドをカスタマイズすることで、オブジェクトの文字列表現をカスタマイズできます。
+      モデルModelにはmodels.pyをデータベース連携に、ビューViewではviews.py、URLルーティングにはurls.py、を</pre> 
+      <p>URLの部分の、/myapp/detail/13/  の番号を<code>13 ~以上</code>に変えてみましょう。</p></P>
+      <b>あなたの入力した数字は→ {{ number}} : 管理サイトのMyApps内の、title と content の両方を文字列で表示されます。試してください</b></p>
+      
+    </div>
+
+{% comment %}
+以下削除した
+<div class="w-50">
+    <a href={% url 'nippo-update' object.pk %} class="btn btn-primary btn-sm">編集</a>
+    <a href={% url 'nippo-delete' object.pk %} class="btn btn-danger btn-sm">削除</a>
+</div>要　設定
+
+<h1>今日のラッキーナンバーはこちら→ {{random_number}}</h1>
+    あなたの入力した数字は→ {{ number}} </p>
+     {{random_number}} + {{number}} = {{ random_number|add:number}}</p>
+{% endcomment %}
+<footer class="bg-primary">
+    <div id="footer-logo">
+      <a href="#">
+        <i class="bi bi-bootstrap-fill footer-logo" style="font-size: 3rem;"></i>
+      </a>
+    </div>
+    <div class="footer-content">
+      <div>
+        <a href="#">
+          プライバシーポリシー
+        </a>
+      </div>
+      <div>|</div>
+      <div>
+        <a href="#">
+           利用規約
+        </a>        
+      </div>
+      <div>|</div>
+      <div>
+        <small>
+        &copy; 2023 My Django App. All rights reserved.
+        </small>
+      </div>
+    </div>
+  </footer>
+{% endblock %}
+
+
+

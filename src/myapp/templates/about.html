@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}about{% endblock %}
+
+{% block content %}
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+        <style>a {color: white}</style>
+        &emsp;<a href=" / ">Home</a>
+        <a href=" /myapp/myapp ">日記情報</a> |
+        <a href=" /myapp/detail/13/ "> 詳しい情報</a> |
+        <a href=" /myapp/form/ ">コンタクト</a>  |
+        <a href=" /admin/ ">管理サイト</a>   |
+        <a href="/myapp/person_list/">人物情報</a>   |
+    </nav>
+</header>
+<div class="container">
+    <nav>
+        <!-- Add your navigation links here -->
+      
+        
+    </nav>
+    <main>
+        <section>
+            
+           
+           
+    <h2>このAboutページを追加するには？</h2>
+        </section>
+
+
+    <dl>
+        <dt>まず urls.pyにabout/追加する</dt>
+        <dd>
+            <code>
+                <pre>
+                    from django.urls import path
+
+                    from .views import IndexView, AboutView    # .ドットは同じフォルダ内からviews.py（pyつけない）からviewを持ってこい
+
+                urlpatterns = [
+                    path('', IndexView.as_view()),
+                    path('about/', AboutView.as_view()),
+                ]
+
+                </pre>
+            </code>
+        </dd>
+            <dt>次に views.pyにclass下のコードのように追加する</dt>
+            <dd>
+                <code>
+                    <pre>
+                        from django.views.generic import TemplateView
+
+                        class IndexView(TemplateView):
+                            template_name = "index.html"
+                        
+                        class AboutView(TemplateView):
+                            template_name = "about.html"    
+                        
+                    </pre>
+                </code>
+            </dd>
+    </dl>
+    <section>
+     <h3>新しいモデルを作成する</h3>
+     <dl>
+        <dt>models.py ファイルで新しいMyMail という名前のモデルを作成することにします</dt>
+        <dd>
+            <code>
+                <pre>
+                from django.db import models
+
+                class MyMail(models.Model):
+                    subject = models.CharField(max_length=255)  #メールの件名 
+                    message = models.TextField()                #メッセージ本文
+                    sender = models.EmailField()                #送信者のメールアドレス
+                    timestamp = models.DateTimeField(auto_now_add=True)  #タイムスタンプ 
+
+                    def __str__(self):
+                        return self.subject
+
+                </pre>
+            </code>
+        </dd>
+        
+        <dt>モデルのマイグレーションを作成およびデータベースに適用する</dt>
+        <dd>
+            <code>
+                <pre>
+                    python3 manage.py makemigrations
+                    python3 manage.py migrate
+                </pre>
+            </code>
+        </dd>
+
+        <dt>forms.py ファイルでフォームを作成</dt>
+        <dd>
+            <code>
+                <pre>
+                    from django import forms
+                    from .models import MyMail
+
+                    class MyMailForm(forms.ModelForm):
+                        class Meta:
+                            model = MyMail
+                            fields = ['subject', 'message', 'sender']
+                </pre>
+            </code>
+        </dd>
+
+        <dt>views.py ビューを更新する</dt>
+        <dd>
+            <code>
+                <pre>
+                    from django.shortcuts import render, redirect
+                    from .forms import MyMailForm
+
+                    def mymailCreateView(request):
+                        template_name = "myapp/mymail-form.html"
+
+                        if request.method == "POST":
+                            # POST リクエストが送信された場合の処理
+                            form = MyMailForm(request.POST)
+                            if form.is_valid():
+                                form.save()
+                                return redirect("mymail_form")
+
+                        # GET リクエストの場合はフォームを表示
+                        else:
+                            form = MyMailForm()
+
+                        context = {
+                            'form': form,
+                        }
+
+                        return render(request, template_name, context)
+                </pre>
+            </code>
+        </dd>
+
+        <dt>urls.py を更新する</dt>
+        <dd>
+            <code>
+                <pre>
+                    from .views import myappListView, myappDetailView, myappCreateView, IndexView, AboutView, PersonListView, mymailCreateView #新しいビューを作成毎に
+                    
+                    path('mymail/form/', views.mymailCreateView, name='mymail_form'),
+                </pre>
+            </code>
+        </dd>
+        <dt>テンプレートファイル mymail-form.htmlを作成し表示させる</dt>
+        <dd>
+            <code>
+                <pre>
+                    &#123; extends "base.html" %&#125;
+
+                    &#123;% block title %&#125;MyMail Form{% endblock %&#125;
+
+                    &#123;% block content %&#125;
+                    &lt;h1>MyMail Form&lt;/h1>
+                    
+                    &lt;!-- フォームを表示 -->
+                    &lt;form method="post">
+                        &#123;% csrf_token %&#125;   &lt;!--テンプレートタグはセキュリティ対策必要-->
+                        &#123;&#123; form.as_p &#125;&#125;
+                        &lt;button type="submit">Submit&lt;/button>
+                    &lt;/form>
+
+                    &lt;!-- 戻るリンク -->
+                    &lt;p>&lt;a href="&#123;% url 'myapp-list' %&#125;">Back to My Apps List&lt;/a>&lt;/p>
+                    &#123;% endblock %&#125;
+
+                </pre>
+            </code>
+        </dd>
+        <dt>admin.pyで管理サイトに保存する</dt>
+        <dd>MyMail モデルを登録</dd>
+        <dd>
+            <code>
+                <pre>
+                    from django.contrib import admin 
+                    from .models import MyMail 
+                    admin.site.register(MyMail)
+
+                </pre>
+            </code>
+        </dd>
+        <dt></dt>
+        <dd>
+            <code>
+                <pre>
+                </pre>
+            </code>
+        </dd>
+     </dl>
+                
+    </section>
+    </main>
+</div>
+    {% endblock %}

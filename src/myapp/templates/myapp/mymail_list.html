@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}My Mails List{% endblock %}
+{% block content %}
+  <header> 
+    <nav class="navbar navbar-dark bg-primary">
+    <a href="{% url 'mymail_form' %}">メール送信</a>
+    <a href="{% url 'myapp-list' %}">Home戻る</a>
+  </nav></header>
+  <div class="container">
+  <h1>My Mails</h1>
+  <form method="GET" id="search-form">
+    {% csrf_token %}
+    {{ search_form.as_p }}
+    <button type="submit">Search</button>
+</form>
+<BR>&emsp;
+<button id="toggle-form">Toggle Form</button>
+
+<script>
+    const searchForm = document.getElementById('search-form');
+    const toggleButton = document.getElementById('toggle-form');
+    
+    // フォームの初期表示状態を非表示にする
+    searchForm.style.display = 'none';
+
+    toggleButton.addEventListener('click', function() {
+        // ボタンがクリックされたとき、フォームの表示状態をトグル
+        if (searchForm.style.display === 'none') {
+            searchForm.style.display = 'block';
+        } else {
+            searchForm.style.display = 'none';
+        }
+    });
+</script>
+
+  {% if object_list %}
+    <ul>
+      {% for obj in object_list %}
+        <li>{{ obj.subject }}</li>
+        <li>{{ obj.message }}</li>
+        <li>Sender: {{ obj.sender }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No matching mails found.</p>
+  {% endif %}
+
+  
+  
+  {% if search_form.cleaned_data.search %}
+    <p><a href="{% url 'mymail_list' %}">Show all mails</a></p>
+  </div>
+  {% endif %}
+
+{% comment %}
+{% endcomment %}
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Update My App Entry{% endblock %}
+{% block content %}
+<h1>Update My App Entry</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Update</button>
+</form>
+<p><a href="{% url 'myapp-list' %}">Back to My Apps List</a></p>
+{% endblock %}

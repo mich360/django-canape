@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}フォームのタイトル{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>フォームを入力してください</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="title" class="form-label">タイトル：</label>
+      <input type="text" name="title" id="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">内容：</label>
+      <input type="text" name="content" id="content" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">送信</button>
+  </form>
+    <P></P>
+    <P><a href={% url 'myapp-list' %}>myapp-list Page</a></P>
+</div>
+{% endblock %}
+
+
+

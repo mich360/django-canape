@@ -1,0 +1,47 @@
+/* Your custom CSS styles go here */
+body {
+    background-color: aquamarine;
+    font-family: Arial, sans-serif;
+    margin-left: 50px;
+    /* margin: 0; */
+    padding: 0;
+}
+
+
+
+
+
+nav {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+nav a {
+    
+    text-decoration: none;
+    padding: 5px;
+}
+
+nav a:hover {
+    background-color: #ddd;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #552ef1;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+footer p {
+   
+    margin: 0;
+}

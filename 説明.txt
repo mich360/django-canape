@@ -1,0 +1,46 @@
+参考 : https://itc.tokyo/django/tutorial/
+
+画面表示
+% cd documents     
+% cd canape
+% source venv/bin/activate  : 仮想環境起動
+% cd src
+% python3 manage.py runserver 
+　　
+
+
+
+% python3    :>>> 開く     
+
+>>> exit()
+
+管理画面で表示するためには、admin.pyで登録
+
+src % python3 manage.py shell
+>>> from myapp.models import MyApp
+>>> obj = MyApp(title="テストタイトル", content="テストコンテント")
+>>> obj.title
+'テストタイトル'
+>>> obj.content
+'テストコンテント'
+>>> obj.save()
+>>> q = MyApp.objects.first()
+>>> q.title
+'テストタイトル'
+
+
+q.title = "新しいタイトル"　# 例えば””日記”書き換えるには
+>>> q = MyApp.objects.first()
+>>> q.title = "日記"
+>>> q.save()
+>>> exit()
+(venv) naomichimasumoto@michi-2022Mac
+
+
+http://127.0.0.1:8000/mymail/list/   : new!メール検索
+http://127.0.0.1:8000/myapp/
+http://127.0.0.1:8000/myapp/form/
+http://127.0.0.1:8000/myapp/detail/16/
+http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/admin/myapp/myapp/1/change/
+
