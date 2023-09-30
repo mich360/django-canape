@@ -6,7 +6,11 @@
 % source venv/bin/activate  : 仮想環境起動
 % cd src
 % python3 manage.py runserver 
-　　
+変更ー画面表示
+django-canape % pwd
+/Users/naomichimasumoto/react-lottie-demo/react-lottie-demo/django-canape
+ こちらを　cd して下さい。  
+
 
 
 
