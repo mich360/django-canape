@@ -16,14 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
- 
+from myapp.views import IndexView  # IndexView をインポート
+from myapp.views import AboutView  # AboutView をインポート
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', IndexView.as_view(), name='index'),  # トップレベルのURLパターンを設定
     path('myapp/', include('myapp.urls')),
-    path('', include("myapp.urls")),
+    path('about/', AboutView.as_view(), name='about'),
 ]
 
+
+# from django.contrib import admin
+# from django.urls import path, include
+ 
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('myapp/', include('myapp.urls')),  
+# ]
+# # main/urls.py
 
 
 
