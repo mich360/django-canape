@@ -126,8 +126,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static_local" ]
 
+
+                # メディアファイルにアクセスするためのURL　又は media_local/
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media_local"
+                # メディアファイルの保存場所 (ファイルシステム上の絶対パス) 又は media_local/
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # Default primary key field type
