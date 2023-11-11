@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib import admin
-from .views import myappListView, myappDetailView, myappCreateView, IndexView, AboutView, PersonListView, mymailCreateView, myappUpdateListView, mymail_list #, #send_email
+from .views import myappListView, myappDetailView, myappCreateView, IndexView, AboutView, PersonListView, mymailCreateView, myappUpdateListView, mymail_list
 from . import views
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
@@ -15,15 +15,51 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('loggedin/', views.loggedin_view, name='loggedin_view'),
-    path('myapp/form/', views.myappCreateView, name='myapp_form'),
+    path('myapp/form/', myappCreateView, name='myapp_form'),
     path('mymail/form/', views.mymailCreateView, name='mymail_form'),
     path('myapp/update/<int:pk>/', views.myappUpdateView, name='myapp-update'),
     path('mymail/list/', views.mymail_list, name='mymail_list'),
-    # path('mymail/send/', views.send_email, name='send_email'),  # この行を修正
+
+    # 他のURLパターンを定義することができます
 ]
 
 
 
+
+
+# from django.urls import path
+# from django.contrib import admin
+# from .views import myappListView, myappDetailView, myappCreateView, IndexView, AboutView, PersonListView, mymailCreateView, myappUpdateListView, mymail_list #, #send_email
+# from . import views
+# from django.contrib.auth.views import LoginView
+# from django.contrib.auth.views import LogoutView
+# from django.contrib.auth.decorators import login_required
+
+
+
+# urlpatterns = [
+#     path('', IndexView.as_view()),  
+#     path('about/', AboutView.as_view()),
+#     path("myapp/", views.myappListView, name="myapp-list"),
+#     path("detail/<int:pk>/", myappDetailView, name="myapp-detail"),
+#     path('person_list/', login_required(views.PersonListView.as_view()), name='person_list'),
+#     path('login/', LoginView.as_view(), name='login'),
+#     path('logout/', LogoutView.as_view(), name='logout'),
+#     path('loggedin/', views.loggedin_view, name='loggedin_view'),
+#     #path('myapp/form/', views.myappCreateView, name='myapp_form'),
+#     path('mymail/form/', views.mymailCreateView, name='mymail_form'),
+#     path('myapp/update/<int:pk>/', views.myappUpdateView, name='myapp-update'),
+#     path('mymail/list/', views.mymail_list, name='mymail_list'),
+#     path('myapp/form/', myappCreateView, name='myapp_form'),
+
+    
+
+#     # 他のURLパターンを定義することができます
+# ]
+    # path('mymail/send/', views.send_email, name='send_email'),  # この行を修正
+
+
+# # myapp・urls.pyです
 
 # from django.urls import path
 # from django.contrib import admin
@@ -72,7 +108,7 @@ urlpatterns = [
 
 
 
-# # urls.py
+
 
 
 
