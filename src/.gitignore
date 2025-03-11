@@ -3,3 +3,4 @@ venv/
 
 # SQLite データベース
 db.sqlite3
+__pycache__/
