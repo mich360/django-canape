@@ -1,5 +1,7 @@
-env/
-src/db.sqlite3
+# macOS システムファイル
+.DS_Store
+
+venv/
 
 # SQLite データベース
 db.sqlite3
