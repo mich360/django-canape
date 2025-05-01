@@ -1,5 +1,5 @@
-venv/
-
+env/
+src/db.sqlite3
 
 # SQLite データベース
 db.sqlite3
