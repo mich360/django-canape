@@ -124,8 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static_local" ]
+STATICFILES_DIRS = [ BASE_DIR / "static", ]
 
+# 静的ファイルの収集先ディレクトリを指定
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
                 # メディアファイルにアクセスするためのURL　又は media_local/
 MEDIA_URL = '/media/'

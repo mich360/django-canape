@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from myapp.views import IndexView  # IndexView をインポート
 from myapp.views import AboutView  # AboutView をインポート
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +27,9 @@ urlpatterns = [
     path('myapp/', include('myapp.urls')),
     path('about/', AboutView.as_view(), name='about'),
 ]
-
+# 開発環境で静的ファイルを提供
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # from django.contrib import admin
 # from django.urls import path, include
