@@ -1,8 +1,17 @@
 # macOS システムファイル
 .DS_Store
 
+# 仮想環境
 venv/
 
 # SQLite データベース
 db.sqlite3
+
+# Pythonキャッシュ
 __pycache__/
+
+# Django 静的ファイル出力ディレクトリ（collectstaticの出力先）
+staticfiles/
+
+# 自作staticファイルを置かないなら以下も無視
+static/
