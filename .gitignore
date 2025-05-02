@@ -16,3 +16,4 @@ staticfiles/
 # 自作staticファイルを置かないなら以下も無視
 static/
 /kokokara.md
+kokokara.md
