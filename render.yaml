@@ -3,9 +3,11 @@ services:
     name: django-canape
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn src.main.wsgi:application"
+    startCommand: "gunicorn main.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: main.settings
+      - key: PYTHONPATH
+        value: src
       - key: PYTHON_VERSION
         value: 3.10
