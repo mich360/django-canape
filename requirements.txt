@@ -2,3 +2,6 @@ asgiref==3.7.2
 Django==4.2.5
 sqlparse==0.4.4
 typing_extensions==4.7.1
+dj-database-url==2.1.0       # RenderのDATABASE_URL対応
+whitenoise==6.6.0            # 静的ファイルの配信用
+gunicorn==21.2.0             # Renderでの本番用アプリケーションサーバ
