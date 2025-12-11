@@ -5,3 +5,5 @@ kokokara.md
 
 git rm --cached ../.DS_Store
 
+*.pyc
+__pycache__/
